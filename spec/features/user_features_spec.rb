@@ -11,7 +11,7 @@ describe 'user signup', :type => :feature do
     signup_invalid
   end
 
-  it 'remains logged in after signing up' do 
+  it 'remains logged in after signing up' do
     signup_valid
     click_link('New Post')
     expect(page).to have_content("#{@kitten.name}")

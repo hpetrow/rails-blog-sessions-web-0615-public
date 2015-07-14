@@ -15,17 +15,22 @@
     <p><%= comment.content %> </p>
   <% end %>
 
-  <h4>Post a new comment:</h4>
-  <%= form_for [@post, Comment.new] do |f| %>
-    <div class="field">
-      <%= f.label :content %><br>
-      <%= f.text_area :content %><br>
-      <%= f.hidden_field :post_id, :value => @post.id %>
-    </div>
+  <% if user_signed_in? %>
+    <h4>Post a new comment:</h4>
+    <%= form_for [@post, Comment.new] do |f| %>
+      <%= f.hidden_field :user_id, :value => session[:user_id] %>
+      <div class="field">
+        <%= f.label :content %><br>
+        <%= f.text_area :content %><br>
+        <%= f.hidden_field :post_id, :value => @post.id %>
+      </div>
 
-    <div class="actions">
-      <%= f.submit %>
-    </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>"Log In to Comment!"</p>
   <% end %>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |

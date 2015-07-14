@@ -1,5 +1,7 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
 <h1>Blog Posts</h1>
 <%= render @posts  %>
-
-
 <br>
